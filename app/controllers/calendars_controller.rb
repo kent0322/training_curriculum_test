@@ -1,5 +1,8 @@
 class CalendarsController < ApplicationController
 
+  # キャメルケース（クラス名）
+  # スネークケース（変数名・メソッドめ）
+
   # １週間のカレンダーと予定が表示されるページ
   def index
     get_week
@@ -35,8 +38,13 @@ class CalendarsController < ApplicationController
       plans.each do |plan|
         today_plans.push(plan.plan) if plan.date == @todays_date + x
       end
-      days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => today_plans, :wday => (Date.today+0).day }
+
+      days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => today_plans, :wday => (Date.today+0).day 
+        
                                                             # (Date.today+0).day
+
+      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: today_plans}
+        
       @week_days.push(days)
     end
 
